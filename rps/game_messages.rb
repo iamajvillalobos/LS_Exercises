@@ -25,6 +25,14 @@ module GameMessages
   def display_no_winner_message
     puts "=> It's a tie!"
   end
+
+  def display_play_again_message
+    print "=> Do you want to continue? (y/n): "
+  end
+
+  def display_play_again_warning
+    puts '=> Error! Please enter "y" or "n" only'
+  end
 end
 
 # 1899144011
