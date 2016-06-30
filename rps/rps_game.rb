@@ -5,6 +5,7 @@ require_relative 'computer'
 
 class RpsGame
   WINNER_SCORE = 3
+  GAME_OPTIONS = %w(rock paper scissors lizard spock).freeze
   attr_accessor :human, :computer
 
   def initialize
@@ -19,17 +20,45 @@ class RpsGame
       break if winner?
     end
     display_winner
+    display_history
     display_goodbye_message
   end
 
   def game_loop
-    display_score
-    human.choose
-    computer.choose
+    human_turn
+    computer_turn
     display_moves
     display_round_winner
     increment_score
     reset_screen
+    display_score
+  end
+
+  def human_turn
+    move = human.choose
+    human.history << move.to_s
+  end
+
+  def computer_turn
+    move = computer.choose
+    computer.history << move.to_s
+  end
+
+  def display_history
+    human_history
+    computer_history
+  end
+
+  def human_history
+    puts "#{human.name} moves:"
+    puts "-" * 10
+    human.history.each { |move| puts move.to_s }
+  end
+
+  def computer_history
+    puts "\n#{computer.name} moves:"
+    puts "-" * 10
+    computer.history.each { |move| puts move.to_s }
   end
 
   def reset_screen
@@ -51,7 +80,7 @@ class RpsGame
   end
 
   def display_welcome_message
-    puts "Welcome to Rock, Paper, Scissors, Lizard and Spock!"
+    puts "Welcome to #{capitalize_game_title}!"
   end
 
   def increment_score
@@ -65,17 +94,28 @@ class RpsGame
 
   def display_round_winner
     if human.move > computer.move
-      puts "\n#{human.name} won!".upcase
+      human_won_message
     elsif human.move < computer.move
-      puts "\n#{computer.name} won!".upcase
+      computer_won_message
     else
       puts "\nIt's a tie!".upcase
     end
   end
 
+  def human_won_message
+    puts "\n#{human.name} won!".upcase
+  end
+
+  def computer_won_message
+    puts "\n#{computer.name} won!".upcase
+  end
+
   def display_goodbye_message
-    display_score
-    puts "Thank you for playing Rock, Paper, Scissors, Lizard and Spock!, goodbye!"
+    puts "\nThank you for playing #{capitalize_game_title}, goodbye!"
+  end
+
+  def capitalize_game_title
+    GAME_OPTIONS.map(&:capitalize).join(' ')
   end
 
   def display_winner
