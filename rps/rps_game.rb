@@ -42,6 +42,7 @@ class RpsGame
     puts "Human: #{human.score}"
     puts "Computer: #{computer.score}"
     puts "-" * 10
+    puts ""
   end
 
   def display_moves
@@ -64,11 +65,11 @@ class RpsGame
 
   def display_round_winner
     if human.move > computer.move
-      puts "#{human.name} won!"
+      puts "\n#{human.name} won!".upcase
     elsif human.move < computer.move
-      puts "#{computer.name} won!"
+      puts "\n#{computer.name} won!".upcase
     else
-      puts "It's a tie!"
+      puts "\nIt's a tie!".upcase
     end
   end
 
@@ -79,9 +80,11 @@ class RpsGame
 
   def display_winner
     if human.score == WINNER_SCORE
-      puts "#{human.name} won!"
+      puts "#{human.name} won!".upcase
+      puts ""
     elsif computer.score == WINNER_SCORE
-      puts "#{computer.name} won!"
+      puts "#{computer.name} won!\n".upcase
+      puts ""
     end
   end
 end
