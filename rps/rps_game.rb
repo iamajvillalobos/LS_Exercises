@@ -51,7 +51,7 @@ class RpsGame
   end
 
   def display_welcome_message
-    puts "Welcome to Rock, Paper and Scissors!"
+    puts "Welcome to Rock, Paper, Scissors, Lizard and Spock!"
   end
 
   def increment_score
@@ -75,7 +75,7 @@ class RpsGame
 
   def display_goodbye_message
     display_score
-    puts "Thank you for playing Rock, Paper and Scissors, goodbye!"
+    puts "Thank you for playing Rock, Paper, Scissors, Lizard and Spock!, goodbye!"
   end
 
   def display_winner

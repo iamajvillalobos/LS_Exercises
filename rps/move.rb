@@ -3,7 +3,7 @@
 class Move
   attr_reader :value
 
-  VALUES = ['rock', 'paper', 'scissors'].freeze
+  VALUES = ['rock', 'paper', 'scissors', 'lizard', 'spock'].freeze
 
   def initialize(value)
     @value = value
@@ -35,5 +35,13 @@ class Move
 
   def scissors?
     @value == 'scissors'
+  end
+
+  def lizard?
+    @value == 'lizard'
+  end
+
+  def spock?
+    @value == 'spock'
   end
 end

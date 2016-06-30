@@ -20,7 +20,7 @@ class Human < Player
     choice = nil
 
     loop do
-      puts 'Choose a move (rock, paper, scissors):'
+      puts 'Choose a move (rock, paper, scissors, lizard, spock):'
       choice = gets.chomp
       break if Move::VALUES.include?(choice)
       puts "Sorry, you must input correct choice."
