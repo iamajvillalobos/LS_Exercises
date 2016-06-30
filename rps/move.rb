@@ -14,15 +14,19 @@ class Move
   end
 
   def >(other_move)
-    (rock? && other_move.scissors?) ||
-      (paper? && other_move.rock?) ||
-      (scissors? && other_move.paper?)
+    (rock? && other_move.scissors?) || (rock? && other_move.lizard?) ||
+      (paper? && other_move.spock?) || (paper? && other_move.rock?) ||
+      (scissors? && other_move.paper?) || (scissors? && other_move.lizard?) ||
+      (spock? && other_move.rock?) || (spock? && other_move.scissors?) ||
+      (lizard? && other_move.spock?) || (lizard? && other_move.paper?)
   end
 
   def <(other_move)
-    (rock? && other_move.paper?) ||
-      (paper? && other_move.scissors?) ||
-      (scissors? && other_move.rock?)
+    (rock? && other_move.paper?) || (rock? && other_move.spock?) ||
+      (paper? && other_move.lizard?) || (paper? && other_move.scissors?) ||
+      (lizard? && other_move.rock?) || (lizard? && other_move.scissors?) ||
+      (spock? && other_move.paper?) || (spock? && other_move.lizard?) ||
+      (scissors? && other_move.rock?) || (scissors? && other_move.spock?)
   end
 
   def rock?
