@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Move
+  include Comparable
   attr_reader :value
 
   VALUES = ['rock', 'paper', 'scissors', 'lizard', 'spock'].freeze
@@ -13,20 +14,18 @@ class Move
     value
   end
 
-  def >(other_move)
-    rock_winner?(other_move) ||
-      paper_winner?(other_move) ||
-      scissors_winner?(other_move) ||
-      lizard_winner?(other_move) ||
-      spock_winner?(other_move)
-  end
-
-  def <(other_move)
-    rock_loser?(other_move) ||
-      paper_loser?(other_move) ||
-      scissors_loser?(other_move) ||
-      lizard_loser?(other_move) ||
-      spock_loser?(other_move)
+  def <=>(other_move)
+    if rock_winner?(other_move) ||
+        paper_winner?(other_move) ||
+        scissors_winner?(other_move) ||
+        lizard_winner?(other_move) ||
+        spock_winner?(other_move)
+      1
+    elsif value == other_move.value
+      0
+    else
+      -1
+    end
   end
 
   def rock?
