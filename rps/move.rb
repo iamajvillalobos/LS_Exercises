@@ -16,10 +16,10 @@ class Move
 
   def <=>(other_move)
     if rock_winner?(other_move) ||
-        paper_winner?(other_move) ||
-        scissors_winner?(other_move) ||
-        lizard_winner?(other_move) ||
-        spock_winner?(other_move)
+       paper_winner?(other_move) ||
+       scissors_winner?(other_move) ||
+       lizard_winner?(other_move) ||
+       spock_winner?(other_move)
       1
     elsif value == other_move.value
       0

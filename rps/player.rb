@@ -6,6 +6,5 @@ class Player
   def initialize
     set_name
     @score = 0
-    @history = []
   end
 end

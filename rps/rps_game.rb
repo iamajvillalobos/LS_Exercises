@@ -3,21 +3,24 @@
 require_relative 'human'
 require_relative 'computer'
 require_relative 'game_messages'
+require_relative 'history'
 
 class RpsGame
   include GameMessages
   attr_accessor :human, :computer
-  WINNER_SCORE = 3
+  WINNER_SCORE = 2
 
   def initialize
     @human = Human.new
     @computer = Computer.new
+    @history = History.new
   end
 
   def play
     welcome_message
     game_loop
     goodbye_message
+    show_history
   end
 
   def game_loop
@@ -32,8 +35,18 @@ class RpsGame
   end
 
   def player_take_turns
-    human.choose
-    computer.choose
+    human_turn
+    computer_turn
+  end
+
+  def human_turn
+    move = human.choose
+    @history.add(human.name.to_s, move)
+  end
+
+  def computer_turn
+    move = computer.choose
+    @history.add(computer.name.to_s, move)
   end
 
   def evaluate_round
@@ -65,6 +78,10 @@ class RpsGame
     end
     return true if choice == 'y'
     false
+  end
+
+  def show_history
+    @history.display_moves
   end
 end
 
