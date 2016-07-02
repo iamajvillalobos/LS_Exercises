@@ -56,11 +56,12 @@ class RpsGame
   end
 
   def stop_playing?
-    display_stop_playing_message
     choice = ""
     loop do
+      display_stop_playing_message
       choice = gets.chomp.downcase
       break if ['y', 'n'].include?(choice)
+      puts "=> You must choose y or n."
     end
     return true if choice == 'y'
     false
